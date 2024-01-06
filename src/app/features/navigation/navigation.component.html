@@ -1,13 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="float-start w-75">
-  </div>
-  <div class="float-end w-25">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Library</a>
+
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['books/book-list']">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['authors']">Authors</a>
+      </li>
+      <ng-container *ngIf="accountService.currentUser$ | async">
+      </ng-container>
+    </ul>
+
+    <p *ngIf="(accountService.currentUser$ | async) as user"
+       class="float-end navbar-brand mb-0">Welcome {{user.username | titlecase}}
+    </p>
+
     <button *ngIf="!(accountService.currentUser$ | async)"
             class="btn btn-success mx-2 float-end"
             [routerLink]="['login']">Login
     </button>
     <button *ngIf="(accountService.currentUser$ | async)"
-            class="btn btn-success mx-2 float-end"
+            class="btn btn-danger mx-2 float-end"
             [routerLink]="['login']"
             (click)="logout()">Logout
     </button>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {AccountService} from "../../auth/services/account.service";
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe, NgIf, TitleCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +9,8 @@ import {AsyncPipe, NgIf} from "@angular/common";
   imports: [
     RouterLink,
     AsyncPipe,
-    NgIf
+    NgIf,
+    TitleCasePipe
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'

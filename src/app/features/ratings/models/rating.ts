@@ -1,9 +1,9 @@
 import {Book} from "../../books/models/book";
-import {User} from "../../../auth/models/user";
+import {Member} from "../../../auth/models/member";
 
 export interface Rating {
   id: number;
   book: Book;
-  user: User;
+  member: Member;
   rating: number;
 }

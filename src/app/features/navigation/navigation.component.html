@@ -9,8 +9,6 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['authors']">Authors</a>
       </li>
-      <ng-container *ngIf="accountService.currentUser$ | async">
-      </ng-container>
     </ul>
 
     <p *ngIf="(accountService.currentUser$ | async) as user"

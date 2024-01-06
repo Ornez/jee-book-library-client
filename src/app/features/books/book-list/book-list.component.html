@@ -1,5 +1,53 @@
-<p>book-list works!</p>
+<h2>Books</h2>
 
-<!--<div class="col-2" *ngFor="let book of books">-->
-<!--  <app-book-list-item></app-book-list-item>-->
-<!--</div>-->
+<ng-container *ngIf="accountService.isAdminRole()">
+
+</ng-container>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Index</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Author</th>
+      <th scope="col">Pages</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Num votes</th>
+      <ng-container *ngIf="accountService.isAdminRole()">
+        <th colspan="2" scope="col">
+          <button type="button" class="btn btn-success btn-block">Add</button>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of bookStore.books | async; index as index">
+      <th scope="row">
+        {{ index + 1 }}
+      </th>
+      <td>
+        {{ book!.name }}
+      </td>
+      <td>
+        {{ book!.description | slice:0:40  }}
+      </td>
+      <td>
+        {{ book!.author.firstname }} {{ book!.author.surname }}
+      </td>
+      <td>
+        {{ book!.pages }}
+      </td>
+      <td>
+        {{ book!.averageRating }}
+      </td>
+      <td>
+        {{ book!.numberOfVotes }}
+      </td>
+      <ng-container *ngIf="accountService.isAdminRole()">
+        <td> <button type="button" class="btn btn-primary btn-block">Edit</button></td>
+        <td> <button type="button" class="btn btn-danger btn-block">Delete</button></td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
